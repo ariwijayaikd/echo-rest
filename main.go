@@ -1,3 +1,18 @@
+// Create New Simple CRUD
+// Entity details:
+// Table user:
+// id: int
+// username string
+// email string
+// roles: int
+
+// Create REST API:
+// Create new user: POST /user/
+// Update user: PUT /user/{id}
+// Delete user: DELETE /user/{id}
+// Get list users: GET /user
+// Get Detail user: GET /user/{id}
+
 package main
 
 import (
@@ -6,13 +21,13 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func getlistUser(c echo.Context) error {
+func listUser(c echo.Context) error {
 	// User ID from path `users/:id`
 	id := c.Param("id")
 	return c.String(http.StatusOK, id)
 }
 
-func createnewUser(c echo.Context) error {
+func newUser(c echo.Context) error {
 	// Get name and email
 	name := c.FormValue("name")
 	email := c.FormValue("email")
@@ -26,18 +41,11 @@ func main() {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
-	e.POST("/user", createnewUser)
-	e.GET("/user/:id", getlistUser)
-	e.GET("/user", getdetailUser)
+	e.POST("/user", newUser)
+	e.GET("/user/:id", listUser)
+	e.GET("/user", detailUser)
 	e.PUT("/user/:id", updateUser)
 	e.DELETE("/user/:id", deleteUser)
-
-	// Create REST API:
-	// Create new user: POST /user/
-	// Update user: PUT /user/{id}
-	// Delete user: DELETE /user/{id}
-	// Get list users: GET /user
-	// Get Detail user: GET /user/{id}
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
