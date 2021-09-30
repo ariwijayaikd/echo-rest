@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	// "math/rand"
+	"math/rand"
 	// "time"
 	"net/http"
 	// "strconv"
@@ -21,7 +21,7 @@ import (
 type User struct {
 	Id       int    `json:"id"`
 	Nickname string `json:"nickname"`
-	Emails   string `"json:email"`
+	Emails   string `json:"email"`
 	Roles    int `json:"role"`
 }
 
@@ -29,10 +29,10 @@ type Users []User
 
 var users Users
 
-// func generateId() int {
-// 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-// 	return r.Intn(10000)
-// }
+func generateId() int {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	return r.Intn(10000)
+}
 
 func listUser(c echo.Context) error {
 	// User ID from path `users/:id`
