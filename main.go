@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	// "time"
+	"time"
 	"net/http"
 	// "strconv"
 	// "log"
@@ -34,6 +34,8 @@ func generateId() int {
 	return r.Intn(10000)
 }
 
+//lanjut disini
+
 func listUser(c echo.Context) error {
 	// User ID from path `users/:id`
 	return c.JSON(http.StatusOK, users)
@@ -45,6 +47,7 @@ func newUser(c echo.Context) error {
 	if err != nil {
 		return echo.NewHTTPError(http.StatusUnprocessableEntity)
 	}
+	user.Id = generateId()
 	users = append(users, user)
 	return c.JSON(http.StatusCreated, users)
 }
